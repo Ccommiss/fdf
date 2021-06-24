@@ -20,48 +20,38 @@ SRCS = ./sources/main.c \
 		./sources/pratic.c \
 		./sources/pixelcolor.c \
 
+OBJS := ${SRCS:c=o}
 
-OBJS = $(SRCS:.c=.o)
+CC = clang -g $(FLAGS)
+LIBS = ./libft
+UNAME := $(shell uname)
+APPLE = Darwin
 
-INCLUDES = -I ./minilibx_macos \
-			-I ./libft \
-			-I ./includes
-
-LIB = -L./minilibx_macos -L./libft
-
-CFLAG = -Wall -Wextra -Werror
-
-GCC = gcc 
-
-MLX = -lft -lmlx -framework OpenGL -framework AppKit
-
-$(NAME) : $(OBJS)
-	@make -C ./minilibx_macos
-	@make -C ./libft 
-	@$(GCC) -o $(NAME)  $(OBJS) $(LIB) $(MLX)
-	@echo "$(NAME) has been correctly compiled, congrats!"
-
-%.o : %.c
-	@$(GCC) $(CFLAG) $(INCLUDES) -c $< -o $@
+ifeq ($(UNAME),$(APPLE))
+	FLAGS = -I. -I$(INCLUDES_MAC) -Wall -Werror -Wextra
+endif
+ifeq ($(UNAME),Linux)
+	FLAGS = -I. -I$(INCLUDES_LINUX) -Wall -Werror -Wextra
+endif
 
 all: $(NAME)
 
-clean :
-	@make clean -C ./minilibx_macos/
-	@make clean -C ./libft
-	@rm -f $(OBJS)
-	@echo "Objects deleted"
+$(NAME): $(OBJS) $(INCLUDES)
+	make -C $(LIBS)
+ifeq ($(UNAME),$(APPLE))
+	make -C mlx
+	$(CC)  $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -L$(LIBS) -lft  -o $(NAME)
+endif
+ifeq ($(UNAME),Linux)
+	make -C mlx_linux
+	$(CC) $(OBJS) -L$(LIBS) -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+endif
+
+clean:
+	rm $(OBJS)
+	make clean -C ./libft
 
 fclean: clean
-	@rm -f $(NAME)
-	@make fclean -C ./libft
-	@echo "The program $(NAME) has just been deleted"
+	rm $(NAME)
 
-re:  fclean all
-	@echo "Remake has been done"
-
-
-
-
-
-
+re : fclean all
