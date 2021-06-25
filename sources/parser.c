@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	freetab(void ***tab)
 {
@@ -43,6 +43,7 @@ int	ft_coord(t_fdf *data, char **tab, int pt, char **line)
 
 	x = 0;
 	y = 0;
+	data->altmax = 0;
 	while (tab[y])
 	{
 		line = ft_strsplit(tab[y], ' ');
@@ -50,6 +51,7 @@ int	ft_coord(t_fdf *data, char **tab, int pt, char **line)
 		{
 			ft_fuckingnorme(data, x, y, pt);
 			data->coord[pt][2] = (float)ft_atoi(line[x]);
+			
 			if (data->coord[pt][2] > data->altmax)
 				data->altmax = data->coord[pt][2];
 			x++;
@@ -80,8 +82,8 @@ int	mallocdata(t_fdf *data, char **file)
 		return (0);
 	}
 	data->size = data->x_width * data->y_height;
-	data->zoom = 1500 / data->x_width;
-	data->alt = data->zoom / 2;
+	data->zoom = data->size / 20000;
+	data->alt = 0.1;
 	data->coord = (float **)malloc(sizeof(float *) * (data->size + 1));
 	if (!data->coord)
 		ft_error(data);

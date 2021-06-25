@@ -22,8 +22,8 @@
 # define GREYEL 0xADFF2F
 # define YELGRE 0x9ACD32
 
-# include "../mlx/mlx.h"
-# include "events.h" 
+# include "../mlx_linux/mlx.h"
+# include "events_linux.h" 
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
 # include <sys/types.h>
@@ -78,6 +78,9 @@ typedef struct s_fdf
 	int loop;
 	int altmax;
 
+	int screen_width;
+	int screen_height;
+
 }				t_fdf;
 
 //parser 
@@ -87,7 +90,7 @@ int		closewin(t_fdf *env);
 void 	zoom(t_fdf *env, int key);
 int		sendpoints(t_fdf *env);
 void 	iso(float *x, float *y, float *z, t_fdf *env);
-void 	para(float *x, float *y, float z);
+void 	para(float *x, float *y, float z, t_fdf *env);
 void	handleviews(t_fdf *env);
 
 void	initall(t_fdf *env, int pt1, int pt2);

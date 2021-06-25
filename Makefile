@@ -20,8 +20,10 @@ SRCS = ./sources/main.c \
 		./sources/pratic.c \
 		./sources/pixelcolor.c \
 
-OBJS := ${SRCS:c=o}
+INCLUDES_MAC = ./includes/
+INCLUDES_LINUX = ./includes_linux/
 
+OBJS := ${SRCS:c=o}
 CC = clang -g $(FLAGS)
 LIBS = ./libft
 UNAME := $(shell uname)
@@ -38,6 +40,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(INCLUDES)
 	make -C $(LIBS)
+
 ifeq ($(UNAME),$(APPLE))
 	make -C mlx
 	$(CC)  $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -L$(LIBS) -lft  -o $(NAME)

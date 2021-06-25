@@ -10,25 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	base(t_fdf *env)
 {
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 320, BLU, "Moves :");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 350, WHITE,
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1, BLU, "Moves :");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 20, WHITE,
 		" <- / UP / DOWN / ->");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 400, BLU, "Zoom");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 430, WHITE, " + / - ");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 480, BLU,
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 40, BLU, "Zoom");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 60, WHITE, " + / - ");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 80, BLU,
 		"Projections (iso/para):");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 510, WHITE, "I - P");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 560, BLU, "Rotations :");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 590, WHITE, "4 - 6 - 8");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 640, BLU, "Reset view");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 670, WHITE, "    0");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 880, RED, "Close");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 910, 0xFFFFFF, "Esc");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 100, WHITE, "I - P");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 120, BLU, "Rotations :");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 140, WHITE, "4 - 6 - 8");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 160, BLU, "Reset view");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 180, WHITE, "    0");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 200, RED, "Close");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, env->screen_height * 0.1 + 220 + 20, 0xFFFFFF, "Esc");
 }
 
 void	erase(t_fdf *env)
@@ -41,9 +41,9 @@ void	erase(t_fdf *env)
 	x = 0;
 	y = 0;
 	mlx_clear_window(env->mlx_ptr, env->win_ptr);
-	while (y * 2560 + x < 2560 * 1300)
+	while (y * env->screen_width + x < env->screen_width * env->screen_height)
 	{
-		pixels[(y * 2560 + x)] = 000000;
+		pixels[(y * env->screen_width + x)] = 000000;
 		x++;
 	}
 }
@@ -68,9 +68,12 @@ void	init_struct(t_fdf *env)
 	int	bpp;
 	int	sl;
 
+
 	env->mlx_ptr = mlx_init();
-	env->win_ptr = mlx_new_window(env->mlx_ptr, 2560, 1300, "fdf");
-	env->img_ptr = mlx_new_image(env->mlx_ptr, 2560, 1300);
+	mlx_get_screen_size(env->mlx_ptr, &env->screen_width, &env->screen_height);
+	printf ("height = %d width = %d \n", env->screen_height, env->screen_width);
+	env->win_ptr = mlx_new_window(env->mlx_ptr, env->screen_width, env->screen_height, "fdf");
+	env->img_ptr = mlx_new_image(env->mlx_ptr, env->screen_width, env->screen_height);
 	env->info = mlx_get_data_addr(env->img_ptr, &(bpp), &(sl), &(endian));
 	env->zoom = 20;
 	env->rot_X = 0.52;

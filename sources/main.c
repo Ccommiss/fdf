@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	dispatch(t_fdf *env, int pt1, int pt2)
 {
@@ -23,7 +23,7 @@ void	dispatch(t_fdf *env, int pt1, int pt2)
 		bresen2(env, pt1, pt2);
 }
 
-void	sendpoints(t_fdf *env)
+int	sendpoints(t_fdf *env)
 {
 	int	pt;
 	int	i;
@@ -40,6 +40,15 @@ void	sendpoints(t_fdf *env)
 			dispatch(env, pt, (pt + env->x_width));
 		pt++;
 	}
+	return (1);
+}
+
+int	redisplay(t_fdf *env)
+{
+	erase(env);
+	sendpoints(env);
+	base(env);
+	return (1);
 }
 
 int	main(int ac, char **argv)
@@ -57,7 +66,10 @@ int	main(int ac, char **argv)
 		ft_error(&env);
 	sendpoints(&env);
 	mlx_put_image_to_window(env.mlx_ptr, env.win_ptr, env.img_ptr, 0, 0);
-	mlx_hook(env.win_ptr, 2, 1 << 7, keyrepartition, &env);
+	//mlx_hook(env.win_ptr, 2, 1 << 7, keyrepartition, &env);
+	mlx_hook(env.win_ptr, 9, 1L << 21, redisplay, &env);
+	mlx_hook(env.win_ptr, DESTROY_NOTIFY, STRUCTURE_NOTIFY_MASK, closewin, &env);
+	mlx_hook(env.win_ptr, KEY_PRESS, KEY_PRESS_MASK, keyrepartition, &env);
 	base(&env);
 	mlx_loop(env.mlx_ptr);
 	return (0);

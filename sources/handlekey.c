@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	move(t_fdf *env, int key)
 {
+	printf ("KEY = %d \n", key);
 	if (key == KEY_UP)
 		env->trans_y -= env->zoom;
 	else if (key == KEY_DOWN)
@@ -54,6 +55,8 @@ int	closewin(t_fdf *env)
 {
 	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
 	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
+	mlx_destroy_display(env->mlx_ptr);
+	free(env->mlx_ptr);
 	freetab((void ***)&env->coord);
 	exit(0);
 }
@@ -80,10 +83,10 @@ int	keyrepartition(int key, void *param)
 	t_fdf	*env;
 
 	env = (t_fdf *)param;
-	if (key == 53)
+	//if (key == 53)
+	if (key == KEY_ESC)
 		closewin(env);
-	if (key == KEY_MINUS || key == KEY_EQUAL || key == KEY_H || key == KEY_L
-		|| key == KEY_4 || key == KEY_8 || key == KEY_6)
+	if (key == KEY_MINUS || key == KEY_EQUAL || key == KEY_H || key == KEY_L || key == KEY_4 || key == KEY_8 || key == KEY_6)
 		zoom(env, key);
 	if (key == KEY_LEFT || key == KEY_RIGHT || key == KEY_UP || key == KEY_DOWN
 		|| key == KEY_L)

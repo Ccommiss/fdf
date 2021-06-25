@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	drawline(t_fdf *env, int y, int x, int color)
 {
 	int	*pixels;
 
 	pixels = (int *)env->info;
-	if (x >= 0 && x < 2560 && y >= 0 && y < 1300)
-		pixels[(y * 2560 + x)] = color;
+	if (x >= 0 && x < env->screen_width && y >= 0 && y < env->screen_height)
+		pixels[(y * env->screen_width + x)] = color;
 }
 
 int	color(t_fdf *env, int pt, int pt2)
