@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:57:56 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/06/22 16:42:24 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:39:39 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	move(t_fdf *env, int key)
 {
-	printf ("KEY = %d \n", key);
 	if (key == KEY_UP)
 		env->trans_y -= env->zoom;
 	else if (key == KEY_DOWN)
@@ -83,10 +82,10 @@ int	keyrepartition(int key, void *param)
 	t_fdf	*env;
 
 	env = (t_fdf *)param;
-	//if (key == 53)
 	if (key == KEY_ESC)
 		closewin(env);
-	if (key == KEY_MINUS || key == KEY_EQUAL || key == KEY_H || key == KEY_L || key == KEY_4 || key == KEY_8 || key == KEY_6)
+	if (key == KEY_MINUS || key == KEY_EQUAL || key == KEY_H
+		|| key == KEY_L || key == KEY_4 || key == KEY_8 || key == KEY_6)
 		zoom(env, key);
 	if (key == KEY_LEFT || key == KEY_RIGHT || key == KEY_UP || key == KEY_DOWN
 		|| key == KEY_L)

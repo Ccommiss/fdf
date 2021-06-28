@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:31:04 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/06/23 11:34:26 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:07:33 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	ft_coord(t_fdf *data, char **tab, int pt, char **line)
 		{
 			ft_fuckingnorme(data, x, y, pt);
 			data->coord[pt][2] = (float)ft_atoi(line[x]);
-			
 			if (data->coord[pt][2] > data->altmax)
 				data->altmax = data->coord[pt][2];
 			x++;
@@ -82,7 +81,7 @@ int	mallocdata(t_fdf *data, char **file)
 		return (0);
 	}
 	data->size = data->x_width * data->y_height;
-	data->zoom = data->size / 20000;
+	data->zoom = data->x_width / data->y_height * 3;
 	data->alt = 0.1;
 	data->coord = (float **)malloc(sizeof(float *) * (data->size + 1));
 	if (!data->coord)

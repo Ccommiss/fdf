@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 18:26:24 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/06/23 11:41:13 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:07:06 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	main(int ac, char **argv)
 		ft_error(&env);
 	sendpoints(&env);
 	mlx_put_image_to_window(env.mlx_ptr, env.win_ptr, env.img_ptr, 0, 0);
-	//mlx_hook(env.win_ptr, 2, 1 << 7, keyrepartition, &env);
 	mlx_hook(env.win_ptr, 9, 1L << 21, redisplay, &env);
-	mlx_hook(env.win_ptr, DESTROY_NOTIFY, STRUCTURE_NOTIFY_MASK, closewin, &env);
+	mlx_hook(env.win_ptr, DESTROY_NOTIFY, STRUCTURE_NOTIFY_MASK,
+		closewin, &env);
 	mlx_hook(env.win_ptr, KEY_PRESS, KEY_PRESS_MASK, keyrepartition, &env);
 	base(&env);
 	mlx_loop(env.mlx_ptr);

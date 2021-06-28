@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_linux.h                                        :+:      :+:    :+:   */
+/*   events_linux.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:21:48 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/03/26 15:21:49 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:45:25 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEY_LINUX_H
-# define KEY_LINUX_H
+#ifndef EVENTS_LINUX_H
+# define EVENTS_LINUX_H
 
 # define KEY_W					119
 # define KEY_S					115
@@ -35,7 +35,7 @@
 # define KEY_UP          		65362
 # define KEY_DOWN				65364
 # define KEY_ESC                65307
-# define KEY_4                  52  
+# define KEY_4                  52
 # define KEY_6                  54
 # define KEY_8                  56
 # define KEY_L                  108

@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 13:42:21 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/06/23 11:25:21 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:27:56 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void	iso(float *x, float *y, float *z, t_fdf *env)
 	previous_z = *z;
 	previous_y = *y;
 	previous_x = *x;
-	*x = cos(env->rot_Z) * previous_x - sin(env->rot_Z) * previous_y + env->screen_width / 2;
-	*y = sin(env->rot_Z) * previous_x + cos(env->rot_Z) * previous_y + env->screen_height / 2;
+	*x = cos(env->rot_Z) * previous_x - sin(env->rot_Z)
+		* previous_y + env->screen_w / 2;
+	*y = sin(env->rot_Z) * previous_x + cos(env->rot_Z)
+		* previous_y + env->screen_h / 2;
 	*z = previous_z;
 }
 
@@ -44,8 +46,8 @@ void	para(float *x, float *y, float z, t_fdf *env)
 
 	previous_x = *x;
 	previous_y = *y;
-	*x = previous_x - previous_y - z + env->screen_width / 2;
-	*y = previous_x + previous_y + env->screen_height / 2;
+	*x = previous_x - previous_y - z + env->screen_w / 2;
+	*y = previous_x + previous_y + env->screen_h / 2;
 }
 
 void	handleviews(t_fdf *env)

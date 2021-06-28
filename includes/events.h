@@ -6,13 +6,12 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:07:48 by ccommiss          #+#    #+#             */
-/*   Updated: 2019/02/22 16:08:11 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:44:09 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENTS_H
-# define EVENTS_H  
-
+# define EVENTS_H
 
 /*
 ** MOUSE BUTTONS
@@ -28,7 +27,7 @@
 ** KEYBOARD KEYS
 */
 
-# define KEY_ESCAPE				53
+# define KEY_ESC				53
 # define KEY_F1					122
 # define KEY_F2					120
 # define KEY_F3					99
@@ -145,5 +144,30 @@
 # define KEY_PAD_ADD			69
 # define KEY_PAD_ENTER			76
 # define KEY_PAD_DOT			65
+
+/*
+** EVENTS
+*/
+# define KEY_PRESS				2
+# define KEY_RELEASE			3
+# define BUTTON_PRESS			4
+# define BUTTON_RELEASE			5
+# define MOTION_NOTIFY			6
+# define DESTROY_NOTIFY			17
+# define ENTER_NOTIFY           7
+
+/*
+** EVENT MASKS
+*/
+
+enum
+{
+	KEY_PRESS_MASK = (1 << 0),
+	KEY_RELEASE_MASK = (1L << 1),
+	BUTTON_PRESS_MASK = (1L << 2),
+	BUTTON_RELEASE_MASK = (1L << 3),
+	STRUCTURE_NOTIFY_MASK = (1L << 17),
+	ENTER_WINDOW_MASK = (1L << 4)
+};
 
 #endif
