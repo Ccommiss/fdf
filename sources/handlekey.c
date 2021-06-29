@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:57:56 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/06/29 11:16:02 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 11:41:48 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	closewin(t_fdf *env)
 {
 	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
 	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
-	mlx_destroy_display(env->mlx_ptr);
 	free(env->mlx_ptr);
 	freetab((void ***)&env->coord);
 	exit(0);

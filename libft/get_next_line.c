@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 10:42:24 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/06/29 11:02:39 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 11:41:10 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ static int	ft_managestock(char **final, char **line)
 	return (1);
 }
 
+int	read_line(int *i, int fd, char **stock)
+{
+	*i = read(fd, stock, BUFF_SIZE);
+	return (*i);
+}
+
 int	get_next_line(const int fd, char **line)
 {
 	char			stock[BUFF_SIZE + 1];
@@ -51,8 +57,8 @@ int	get_next_line(const int fd, char **line)
 	a = 0;
 	if (fd < 0 || line == NULL || BUFF_SIZE <= 0 || read(fd, stock, 0) < 0)
 		return (-1);
-	i = read(fd, stock, BUFF_SIZE);
-	while ((a != 1) && (i > 0))
+	i = 0;
+	while ((a != 1) && (read_line(&i, fd, (char **)&stock) > 0))
 	{
 		k = 0;
 		stock[i] = '\0';

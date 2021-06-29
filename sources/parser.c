@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:31:04 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/06/28 14:07:33 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 11:40:47 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int	ft_analyse(char **file, int fd, t_fdf *data)
 		line = ft_strjoin2(line, "\n");
 		*file = ft_strjoin2(*file, line);
 		free(line);
+
 	}
 	if (get_next_line(fd, &line) == -1 || data->y_height <= 1)
 		ft_error(data);
