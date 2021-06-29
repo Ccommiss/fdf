@@ -6,7 +6,7 @@
 #    By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/13 14:01:15 by ccommiss          #+#    #+#              #
-#    Updated: 2021/06/29 10:55:07 by ccommiss         ###   ########.fr        #
+#    Updated: 2021/06/29 11:20:40 by ccommiss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = ft_strsplit.c \
 		ft_bzero.c \
 		ft_putchar.c \
 		ft_strcmp.c \
+		ft_isdigit.c \
     	get_next_line.c\
 
 
