@@ -6,15 +6,15 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 11:50:27 by ccommiss          #+#    #+#             */
-/*   Updated: 2018/11/14 14:06:10 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 10:57:23 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strcmp(const char *str1, const char *str2)
+int	ft_strcmp(const char *str1, const char *str2)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (str1[0] == '\0' && str2[0] == '\0')

@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 09:46:51 by ccommiss          #+#    #+#             */
-/*   Updated: 2018/11/15 16:27:29 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 11:00:34 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (s == NULL)
 		return (NULL);
-	if (!(newstr = (char *)malloc(sizeof(char) * (len + 1))))
+	newstr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!newstr)
 		return (0);
 	while (s[i] && i < len)
 	{

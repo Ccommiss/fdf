@@ -6,13 +6,13 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 10:42:24 by ccommiss          #+#    #+#             */
-/*   Updated: 2019/03/14 14:47:02 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 11:02:39 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int			ft_managestock(char **final, char **line)
+static int	ft_managestock(char **final, char **line)
 {
 	int		g;
 	char	*tmp;
@@ -36,11 +36,11 @@ static int			ft_managestock(char **final, char **line)
 		g++;
 	}
 	*line = ft_strdup(*final);
-	ft_memdel((void**)final);
+	ft_memdel((void **)final);
 	return (1);
 }
 
-int					get_next_line(const int fd, char **line)
+int	get_next_line(const int fd, char **line)
 {
 	char			stock[BUFF_SIZE + 1];
 	static char		*final = NULL;
@@ -49,18 +49,18 @@ int					get_next_line(const int fd, char **line)
 	int				k;
 
 	a = 0;
-	k = 0;
 	if (fd < 0 || line == NULL || BUFF_SIZE <= 0 || read(fd, stock, 0) < 0)
 		return (-1);
-	while ((a != 1) && ((i = read(fd, stock, BUFF_SIZE)) > 0))
+	i = read(fd, stock, BUFF_SIZE);
+	while ((a != 1) && (i > 0))
 	{
+		k = 0;
 		stock[i] = '\0';
 		final = ft_strjoin2(final, stock);
 		while (final[k] && final[k] != '\n')
 			k++;
 		if (final[k] == '\n')
 			a = 1;
-		k = 0;
 	}
 	if (i < 0)
 		return (-1);

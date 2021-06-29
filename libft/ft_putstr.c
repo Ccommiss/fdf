@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 16:27:09 by ccommiss          #+#    #+#             */
-/*   Updated: 2018/11/17 17:28:59 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 10:57:04 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr(char const *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str == NULL)

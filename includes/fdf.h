@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 14:30:30 by ccommiss          #+#    #+#             */
-/*   Updated: 2021/06/28 14:43:52 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 11:15:29 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ typedef struct s_fdf
 	int		sl;
 }				t_fdf;
 
-//parser
 int		ft_analyse(char **file, int fd, t_fdf *env);
 int		ft_coord(t_fdf *data, char **tab, int pt, char **line);
 int		closewin(t_fdf *env);

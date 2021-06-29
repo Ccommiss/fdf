@@ -6,7 +6,7 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 18:06:09 by ccommiss          #+#    #+#             */
-/*   Updated: 2019/03/14 14:46:49 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 11:03:56 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stddef.h>
 # define BUFF_SIZE 42
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	size_t			content_size;

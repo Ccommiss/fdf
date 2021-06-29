@@ -6,96 +6,87 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:30:51 by ccommiss          #+#    #+#             */
-/*   Updated: 2019/02/28 17:28:44 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 10:48:05 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void			ft_malloceach(char *str, char **tab, char c)
+int	ft_countarrays(char const *s, char c)
 {
-	int i;
-	int j;
-	int a;
+	int	nb_arr;
+	int	i;
 
-	a = 0;
-	j = 0;
+	nb_arr = 1;
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
-		while (str[i] != c && str[i])
-		{
-			a++;
+		while (s[i] && s[i] == c)
 			i++;
-		}
-		if (a != 0)
-		{
-			if (!(tab[j] = (char *)malloc(sizeof(char) * a + 1)))
-				return (NULL);
-			j++;
-		}
-		i++;
-		a = 0;
+		if (s[i] && s[i] != c)
+			nb_arr++;
+		while (s[i] && s[i] != c)
+			i++;
 	}
+	return (nb_arr);
 }
 
-static int			ft_countwords(char *str, char c)
+char	*ft_mallocline(char *splitted, const char *s, int c)
 {
-	int i;
-	int word;
+	int	n;
 
-	i = 0;
-	word = 0;
-	while (str[i])
+	n = 0;
+	while (s[n] && s[n] != c)
+		n++;
+	if (n != 0)
 	{
-		if ((str[i] != c) && ((str[i + 1] == c) || str[i + 1] == 0))
-		{
-			word++;
-		}
-		i++;
+		splitted = (char *)malloc(n * sizeof(char) + 1);
+		if (!splitted)
+			return (NULL);
+		return (splitted);
 	}
-	return (word);
+	return (NULL);
 }
 
-static void			fillthetab(char *str, char **tab, char c)
+char	**ft_fill(char **splitted, const char *s, int i_max, int c)
 {
-	int i;
-	int j;
-	int k;
+	int	i;
+	int	j;
 
 	i = 0;
-	k = 0;
-	j = 0;
-	while (str[k] != '\0')
+	while (*s && i < i_max)
 	{
-		while ((str[k] != c) && str[k])
+		j = 0;
+		splitted[i] = ft_mallocline(splitted[i], s, c);
+		while (s[j] && s[j] != c)
 		{
-			tab[i][j] = str[k];
-			k++;
+			splitted[i][j] = s[j];
 			j++;
 		}
 		if (j != 0)
 		{
-			tab[i][j] = '\0';
-			j = 0;
+			splitted[i][j] = '\0';
 			i++;
 		}
-		if (str[k] != '\0')
-			k++;
+		while (s[j] && s[j] == c)
+			j++;
+		s = s + j;
 	}
-	tab[i] = NULL;
+	splitted[i] = NULL;
+	return (splitted);
 }
 
-char				**ft_strsplit(char const *str, char c)
+char	**ft_strsplit(char const *s, char c)
 {
-	char **tab;
+	char	**splitted;
+	int		i_max;
 
-	if (str == NULL)
+	if (!s)
 		return (NULL);
-	if (!(tab = (char **)malloc(sizeof(char *)
-		* (ft_countwords((char *)str, c) + 4))))
+	i_max = ft_countarrays(s, c);
+	splitted = (char **)malloc((i_max + 1) * sizeof(char *));
+	if (!splitted)
 		return (NULL);
-	ft_malloceach((char *)str, tab, c);
-	fillthetab((char *)str, tab, c);
-	return (tab);
+	ft_fill(splitted, s, i_max, c);
+	return (splitted);
 }

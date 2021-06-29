@@ -6,13 +6,13 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 19:16:11 by ccommiss          #+#    #+#             */
-/*   Updated: 2019/01/25 11:24:05 by ccommiss         ###   ########.fr       */
+/*   Updated: 2021/06/29 10:58:30 by ccommiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-char			*ft_strjoin2(char const *s1, char const *s2)
+char	*ft_strjoin2(char const *s1, char const *s2)
 {
 	char	*new;
 	size_t	i;
@@ -32,7 +32,7 @@ char			*ft_strjoin2(char const *s1, char const *s2)
 		i++;
 		j++;
 	}
-	free((void*)s1);
+	free((void *)s1);
 	new[i] = '\0';
 	return (new);
 }
