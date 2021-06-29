@@ -6,7 +6,7 @@
 #    By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/20 14:10:49 by ccommiss          #+#    #+#              #
-#    Updated: 2019/03/16 15:42:35 by ccommiss         ###   ########.fr        #
+#    Updated: 2021/06/29 11:22:23 by ccommiss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,10 +51,11 @@ ifeq ($(UNAME),Linux)
 endif
 
 clean:
-	rm $(OBJS)
+	rm -rf $(OBJS)
 	make clean -C ./libft
 
 fclean: clean
-	rm $(NAME)
+	rm -rf $(NAME)
+	make fclean -C ./libft
 
 re : fclean all
