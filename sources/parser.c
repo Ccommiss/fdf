@@ -81,7 +81,7 @@ int	mallocdata(t_fdf *data, char **file)
 		return (0);
 	}
 	data->size = data->x_width * data->y_height;
-	data->zoom = data->x_width / data->y_height * 3;
+	data->zoom = data->x_width / data->y_height * 5;
 	data->alt = 0.1;
 	data->coord = (float **)malloc(sizeof(float *) * (data->size + 1));
 	if (!data->coord)

@@ -60,8 +60,8 @@ void	reinit(t_fdf *env)
 	env->rot_X = 0.52;
 	env->rot_Y = 0.52;
 	env->rot_Z = 0;
-	env->zoom = 20;
-	env->alt = env->zoom;
+	env->zoom = env->screen_w / env->screen_h * 5;
+	env->alt = env->zoom + 0.1;
 	erase(env);
 	sendpoints(env);
 	base(env);
@@ -76,7 +76,7 @@ void	init_struct(t_fdf *env)
 	env->img_ptr = mlx_new_image(env->mlx_ptr, env->screen_w, env->screen_h);
 	env->info = mlx_get_data_addr(env->img_ptr, &env->bpp,
 			&env->sl, &env->endian);
-	env->zoom = 20;
+	env->zoom = env->screen_w / env->screen_h * 5;
 	env->rot_X = 0.52;
 	env->rot_Z = 0;
 	env->rot_Y = 0.52;
@@ -90,7 +90,7 @@ void	init_struct(t_fdf *env)
 	env->x_width = 0;
 	env->y_height = 0;
 	env->size = 0;
-	env->alt = env->zoom;
+	env->alt = env->zoom + 0.1;
 	env->coord = 0;
 }
 
