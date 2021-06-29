@@ -32,8 +32,8 @@ void	base(t_fdf *env)
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, h + 180, WHITE, "H / L");
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, h + 200, BLU, "Reset view");
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, h + 220, WHITE, "    0");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, h * 10 - 60, RED, "Close");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, h * 10 - 40, WHITE, "Esc");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, h * 10 - 100, RED, "Close");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, h * 10 - 70, WHITE, "Esc");
 }
 
 void	erase(t_fdf *env)
